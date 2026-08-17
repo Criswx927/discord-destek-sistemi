@@ -201,7 +201,7 @@ client.on("interactionCreate", async interaction => {
 
   const ticketCategory = guild.channels.cache.find(
     channel =>
-      channel.name === "TICKETLER" &&
+      channel.name === "🚪 Sunucu Kapısı" &&
       channel.type === ChannelType.GuildCategory
   );
 
@@ -209,7 +209,7 @@ client.on("interactionCreate", async interaction => {
 
     return interaction.reply({
       content:
-        "❌ Sunucuda `TICKETLER` adında kategori bulunamadı.",
+        "❌ Sunucuda `🚪 Sunucu Kapısı` adında kategori bulunamadı.",
       ephemeral: true
     });
 
