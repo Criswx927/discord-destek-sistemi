@@ -40,14 +40,14 @@ const categories = {
   oyun: {
     label: "Oyun Destek",
     description: "Oyun içi yaşadığınız sorunlar için destek alın.",
-    emoji: { id: "1538871611304714300", name: "tta" }, // Select menu için özel emoji objesi
+    emoji: "1538871611304714300", 
     roles: ["Ordu Generali", "Kıdemli Ordu Generali"]
   },
 
   discord: {
     label: "Discord Destek",
     description: "Discord sunucusu ile ilgili destek alın.",
-    emoji: { id: "1523943016094634014", name: "moderatrekibi" }, // Select menu için özel emoji objesi
+    emoji: "1523943016094634014", 
     roles: ["Moderatör Ekibi"]
   },
 
@@ -361,7 +361,7 @@ client.on("interactionCreate", async interaction => {
     .setColor(0x5865F2)
 
     .setTitle(
-      `${categoryInfo.emoji} ${categoryInfo.label}`
+      `Destek Talebi`
     )
 
     .setDescription(
@@ -428,7 +428,7 @@ client.on("interactionCreate", async interaction => {
 });
 
 // ===============================
-// TICKET KAPATMA
+// TICKET KAPATMA VE LOG
 // ===============================
 
 client.on("interactionCreate", async interaction => {
@@ -438,10 +438,24 @@ client.on("interactionCreate", async interaction => {
   if (interaction.customId !== "close_ticket") return;
 
   const channel = interaction.channel;
+  const guild = interaction.guild;
 
   await interaction.reply(
     "🔒 Ticket **5 saniye içinde kapatılıyor...**"
   );
+
+  // Log kanalını ID ile bul
+  const logChannel = guild.channels.cache.get("1402595784385495078");
+
+  if (logChannel) {
+    const logEmbed = new EmbedBuilder()
+      .setColor(0xED4245)
+      .setTitle("🔒 Ticket Kapatıldı")
+      .setDescription(`**Kapatılan Kanal:** #${channel.name}\n**Kapatan Yetkili/Kullanıcı:** ${interaction.user}`)
+      .setTimestamp();
+
+    await logChannel.send({ embeds: [logEmbed] }).catch(() => {});
+  }
 
   setTimeout(async () => {
 
@@ -456,4 +470,4 @@ client.on("interactionCreate", async interaction => {
 // ===============================
 
 client.login(process.env.DISCORD_TOKEN);
-  
+        
