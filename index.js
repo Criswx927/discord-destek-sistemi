@@ -10,6 +10,8 @@ const {
   ButtonStyle
 } = require("discord.js");
 
+const { joinVoiceChannel } = require("@discordjs/voice");
+
 const express = require("express");
 
 const client = new Client({
@@ -65,6 +67,39 @@ client.once("ready", async () => {
   console.log(`${client.user.tag} olarak giriş yapıldı.`);
 
   for (const guild of client.guilds.cache.values()) {
+
+    // ===============================
+    // SES KANALINA OTOMATİK GİR
+    // ===============================
+
+    if (guild.id === "1402595780447043664") {
+
+      const voiceChannel = guild.channels.cache.get(
+        "1538526452545364008"
+      );
+
+      if (voiceChannel && voiceChannel.type === ChannelType.GuildVoice) {
+
+        joinVoiceChannel({
+          channelId: voiceChannel.id,
+          guildId: guild.id,
+          adapterCreator: guild.voiceAdapterCreator,
+          selfDeaf: false,
+          selfMute: false
+        });
+
+        console.log(
+          `${guild.name}: Ses kanalına bağlandı.`
+        );
+
+      } else {
+
+        console.log(
+          `${guild.name}: Ses kanalı bulunamadı.`
+        );
+
+      }
+    }
 
     // destek-sistemi kanalını bul
     const channel = guild.channels.cache.find(
