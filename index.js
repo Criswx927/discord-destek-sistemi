@@ -40,14 +40,14 @@ const categories = {
   oyun: {
     label: "Oyun Destek",
     description: "Oyun içi yaşadığınız sorunlar için destek alın.",
-    emoji: "🎮",
+    emoji: "1538871611304714300", // TTA emojisi
     roles: ["Ordu Generali", "Kıdemli Ordu Generali"]
   },
 
   discord: {
     label: "Discord Destek",
     description: "Discord sunucusu ile ilgili destek alın.",
-    emoji: "💬",
+    emoji: "1523943016094634014", // Moderatör ekibi emojisi
     roles: ["Moderatör Ekibi"]
   },
 
@@ -127,10 +127,10 @@ client.once("ready", async () => {
         "• İlgili yetkili ekip ticketınızı görecektir.\n" +
         "• İşiniz bittiğinde ticketı kapatabilirsiniz.\n\n" +
 
-        "**🎮 Oyun Destek**\n" +
+        "<:tta:1538871611304714300> **Oyun Destek**\n" +
         "Oyun içerisindeki sorunlarınız için.\n\n" +
 
-        "**💬 Discord Destek**\n" +
+        "<:moderatrekibi:1523943016094634014> **Discord Destek**\n" +
         "Discord sunucusu ile ilgili sorunlarınız için.\n\n" +
 
         "**🎟️ Gamepass Destek**\n" +
@@ -456,3 +456,4 @@ client.on("interactionCreate", async interaction => {
 // ===============================
 
 client.login(process.env.DISCORD_TOKEN);
+        
