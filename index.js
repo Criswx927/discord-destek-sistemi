@@ -40,14 +40,14 @@ const categories = {
   oyun: {
     label: "Oyun Destek",
     description: "Oyun içi yaşadığınız sorunlar için destek alın.",
-    emoji: "1538871611304714300", // TTA emojisi
+    emoji: { id: "1538871611304714300", name: "tta" }, // Select menu için özel emoji objesi
     roles: ["Ordu Generali", "Kıdemli Ordu Generali"]
   },
 
   discord: {
     label: "Discord Destek",
     description: "Discord sunucusu ile ilgili destek alın.",
-    emoji: "1523943016094634014", // Moderatör ekibi emojisi
+    emoji: { id: "1523943016094634014", name: "moderatrekibi" }, // Select menu için özel emoji objesi
     roles: ["Moderatör Ekibi"]
   },
 
@@ -456,4 +456,4 @@ client.on("interactionCreate", async interaction => {
 // ===============================
 
 client.login(process.env.DISCORD_TOKEN);
-        
+  
